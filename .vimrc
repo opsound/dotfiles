@@ -1,5 +1,6 @@
 call plug#begin('~/.vim/plugged')
             
+Plug 'aymericbeaumet/vim-symlink'
 Plug 'bfrg/vim-cpp-modern'
 Plug 'bkad/CamelCaseMotion'
 Plug 'crusoexia/vim-monokai'
@@ -8,6 +9,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'justinmk/vim-sneak'
+Plug 'moll/vim-bbye' 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'pelodelfuego/vim-swoop'
 Plug 'rhysd/vim-clang-format'
@@ -16,6 +18,7 @@ Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 
@@ -76,7 +79,7 @@ nnoremap <M-;> <C-W>v
 nnoremap <M-l> <C-W>s
 nnoremap <M-o> <C-W>w
 nnoremap <M-k> <C-W>c
-nnoremap <C-k> :bd!<CR>
+nnoremap <C-k> :Bdelete<CR>
 
 nnoremap <Leader>C :ClangFormatAutoToggle<CR>
 nnoremap <leader>s :w<CR>
@@ -174,3 +177,6 @@ command! -bang -nargs=* Bg
       \   <bang>0)
 
 noremap gs :Bg <C-r><C-w><CR>
+
+" fugitive
+nnoremap <leader>g :G<CR>
