@@ -151,6 +151,7 @@ nnoremap <leader>i :History<CR>
 nnoremap <silent> <C-a> :BLines<CR>
 nnoremap <leader>? :Rg<CR>
 nnoremap <leader>rg :Rg <C-R><C-W><CR>
+nnoremap <leader>l :BTags<CR>
 nnoremap <C-P> :Commands<CR>
 
 function! s:list_cmd()
