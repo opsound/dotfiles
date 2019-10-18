@@ -79,10 +79,11 @@ vmap <Leader>P "+P
 map H ^
 map L $
 
-nnoremap <M-;> <C-W>v
-nnoremap <M-l> <C-W>s
 nnoremap <M-o> <C-W>w
-nnoremap <M-k> <C-W>c
+nnoremap <M-0> <C-W>c
+nnoremap <M-1> <C-W>o
+nnoremap <M-2> <C-W>s
+nnoremap <M-3> <C-W>v
 nnoremap <C-k> :Bdelete<CR>
 
 nnoremap <Leader>C :ClangFormatAutoToggle<CR>
