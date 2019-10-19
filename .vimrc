@@ -10,6 +10,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'glts/vim-magnum'
 Plug 'glts/vim-radical'
 Plug 'jiangmiao/auto-pairs'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'justinmk/vim-sneak'
 Plug 'moll/vim-bbye' 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -26,9 +27,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
 Plug 'wellle/targets.vim'
-
-Plug '~/.fzf'
-Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
