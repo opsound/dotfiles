@@ -34,6 +34,7 @@ Plug 'wellle/targets.vim'
 
 call plug#end()
 " }}}
+
 " Facebook {{{
 source $LOCAL_ADMIN_SCRIPTS/master.vimrc
 source $ADMIN_SCRIPTS/vim/biggrep.vim
@@ -68,6 +69,7 @@ noremap gs :Bg <C-r><C-w><CR>
 nnoremap <Leader>bb :Dispatch buck build $(buck query "owner('$(realpath %)')" \| head -1) \| cat<CR>
 nnoremap <Leader>bt :Dispatch buck test $(buck query "owner('$(realpath %)')" \| head -1) \| cat<CR>
 " }}}
+
 " Colors {{{
 if !has('gui_running')
   set t_Co=256
@@ -80,6 +82,7 @@ endif
 colorscheme monokai
 set bg=dark
 " }}}
+
 " Settings {{{
 set hidden
 set number
@@ -95,6 +98,7 @@ set ignorecase
 set smartcase
 set gdefault
 " }}}
+
 " Keybindings {{{
 let mapleader=" "
 
