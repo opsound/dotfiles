@@ -69,6 +69,10 @@ noremap gs :Bg <C-r><C-w><CR>
 " buck
 nnoremap <Leader>bb :Dispatch buck build $(buck query "owner('$(realpath %)')" \| head -1) \| cat<CR>
 nnoremap <Leader>bt :Dispatch buck test $(buck query "owner('$(realpath %)')" \| head -1) \| cat<CR>
+
+" myc
+set rtp+=/usr/local/share/myc/vim
+nnoremap <leader>j :MYC<CR>
 " }}}
 
 " Colors {{{
@@ -156,10 +160,6 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
-" myc
-set rtp+=/usr/local/share/myc/vim
-nnoremap <leader>j :MYC<CR>
 
 " NERDTree
 nnoremap <leader>d :NERDTreeToggle<CR>
