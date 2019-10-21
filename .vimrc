@@ -15,6 +15,7 @@ Plug 'glts/vim-radical'
 Plug 'janko/vim-test'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'moll/vim-bbye' 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
