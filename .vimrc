@@ -37,6 +37,8 @@ Plug 'wellle/targets.vim'
 call plug#end()
 " }}}
 
+let mapleader=" "
+
 " Facebook {{{
 source $LOCAL_ADMIN_SCRIPTS/master.vimrc
 source $ADMIN_SCRIPTS/vim/biggrep.vim
@@ -68,8 +70,8 @@ command! -bang -nargs=* Bg
 noremap gs :Bg <C-r><C-w><CR>
 
 " buck
-nnoremap <Leader>bb :Dispatch buck build $(buck query "owner('$(realpath %)')" \| head -1) \| cat<CR>
-nnoremap <Leader>bt :Dispatch buck test $(buck query "owner('$(realpath %)')" \| head -1) \| cat<CR>
+nnoremap <leader>bb :Dispatch buck build $(buck query "owner('$(realpath %)')" \| head -1) \| cat<CR>
+nnoremap <leader>bt :Dispatch buck test $(buck query "owner('$(realpath %)')" \| head -1) \| cat<CR>
 
 " myc
 set rtp+=/usr/local/share/myc/vim
@@ -106,15 +108,14 @@ set gdefault
 " }}}
 
 " Keybindings {{{
-let mapleader=" "
 
 " Copy & paste to system clipboard with <Space>p and <Space>y:
-vmap <Leader>y "+y
-vmap <Leader>d "+d
-nmap <Leader>p "+p
-nmap <Leader>P "+P
-vmap <Leader>p "+p
-vmap <Leader>P "+P
+vmap <leader>y "+y
+vmap <leader>d "+d
+nmap <leader>p "+p
+nmap <leader>P "+P
+vmap <leader>p "+p
+vmap <leader>P "+P
 
 nnoremap <M-o> <C-W>w
 nnoremap <M-0> <C-W>c
@@ -123,7 +124,7 @@ nnoremap <M-2> <C-W>s
 nnoremap <M-3> <C-W>v
 nnoremap <C-k> :Bdelete<CR>
 
-nnoremap <Leader>C :ClangFormatAutoToggle<CR>
+nnoremap <leader>C :ClangFormatAutoToggle<CR>
 nnoremap <leader>s :w<CR>
 nnoremap <leader>S :ClangFormat<CR>:w<CR>
 nnoremap <leader>cd :cd %:p:h<CR>
