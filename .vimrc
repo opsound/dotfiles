@@ -110,10 +110,6 @@ nmap <Leader>P "+P
 vmap <Leader>p "+p
 vmap <Leader>P "+P
 
-" Jump to start and end of line using the home row keys
-map H ^
-map L $
-
 nnoremap <M-o> <C-W>w
 nnoremap <M-0> <C-W>c
 nnoremap <M-1> <C-W>o
@@ -124,10 +120,10 @@ nnoremap <C-k> :Bdelete<CR>
 nnoremap <Leader>C :ClangFormatAutoToggle<CR>
 nnoremap <leader>s :w<CR>
 nnoremap <leader>S :ClangFormat<CR>:w<CR>
-nnoremap <leader>q :e ~/.vimrc<CR>
-nnoremap <leader>qw :w<CR>:source ~/.vimrc<CR>
-nnoremap <leader>qe :w<CR>:source ~/.vimrc<CR>:PlugInstall<CR>
-nnoremap <leader>qr :PlugClean!<CR>
+nnoremap <leader>.. :e ~/.vimrc<CR>
+nnoremap <leader>., :w<CR>:source ~/.vimrc<CR>
+nnoremap <leader>.m :w<CR>:source ~/.vimrc<CR>:PlugInstall<CR>
+nnoremap <leader>.n :PlugClean!<CR>
 nnoremap <leader>t <C-O>
 
 " Left and right can switch buffers
@@ -189,5 +185,6 @@ command! -bang -nargs=? -complete=dir Files
   \                               'options': '--tiebreak=index'}, <bang>0)
 
 " fugitive
-nnoremap <leader>g :G<CR>
+nnoremap <leader>gg :G<CR>
+nnoremap <leader>gp :Gpush<CR>
 " }}}
