@@ -3,6 +3,7 @@
 " Plugins {{{
 call plug#begin('~/.vim/plugged')
             
+Plug 'Shougo/denite.nvim'
 Plug 'aymericbeaumet/vim-symlink'
 Plug 'bfrg/vim-cpp-modern'
 Plug 'bkad/CamelCaseMotion'
@@ -19,7 +20,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'moll/vim-bbye' 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'pelodelfuego/vim-swoop'
 Plug 'rhysd/vim-clang-format'
 Plug 'scrooloose/nerdtree'
 Plug 'tommcdo/vim-exchange'
@@ -174,10 +174,10 @@ nnoremap <leader>K :ALEGoToDefinitionInVSplit<CR>
 " fzf
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>i :History<CR>
-nnoremap <silent> <C-a> :BLines<CR>
 nnoremap <leader>? :Rg<CR>
 nnoremap <leader>rg :Rg <C-R><C-W><CR>
 nnoremap <leader>l :BTags<CR>
+nnoremap <leader>x :Commands<CR>
 nnoremap <C-P> :Commands<CR>
 
 function! s:list_cmd()
@@ -192,4 +192,5 @@ command! -bang -nargs=? -complete=dir Files
 " fugitive
 nnoremap <leader>gg :G<CR>
 nnoremap <leader>gp :Gpush<CR>
+nnoremap <leader>gf :Gpull<CR>
 " }}}
