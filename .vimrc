@@ -121,11 +121,13 @@ nnoremap <C-k> :Bdelete<CR>
 nnoremap <Leader>C :ClangFormatAutoToggle<CR>
 nnoremap <leader>s :w<CR>
 nnoremap <leader>S :ClangFormat<CR>:w<CR>
+nnoremap <leader>cd :cd %:p:h<CR>
+
+" .vimrc
 nnoremap <leader>.. :e ~/.vimrc<CR>
 nnoremap <leader>., :w<CR>:source ~/.vimrc<CR>
 nnoremap <leader>.m :w<CR>:source ~/.vimrc<CR>:PlugInstall<CR>
 nnoremap <leader>.n :PlugClean!<CR>
-nnoremap <leader>t <C-O>
 
 " Left and right can switch buffers
 nnoremap <left> :bp<CR>
