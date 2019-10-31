@@ -108,8 +108,6 @@ set incsearch
 set ignorecase
 set smartcase
 set gdefault
-set exrc
-set secure
 " }}}
 
 " Keybindings {{{
