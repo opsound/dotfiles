@@ -8,7 +8,6 @@ Plug 'aymericbeaumet/vim-symlink'
 Plug 'bfrg/vim-cpp-modern'
 Plug 'bkad/CamelCaseMotion'
 Plug 'dense-analysis/ale'
-Plug 'easymotion/vim-easymotion'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'glts/vim-magnum'
 Plug 'glts/vim-radical'
@@ -111,6 +110,8 @@ set gdefault
 " }}}
 
 " Keybindings {{{
+
+let g:camelcasemotion_key = '<leader>'
 
 " Copy & paste to system clipboard with <Space>p and <Space>y:
 vmap <leader>y "+y
