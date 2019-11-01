@@ -147,7 +147,7 @@ nnoremap <right> :bn<CR>
 nnoremap <leader><leader> <c-^>
 
 " Open new file adjacent to current file
-nnoremap <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+nnoremap \e :e <C-R>=expand("%:p:h") . "/" <CR>
 
 " easymotion
 let g:EasyMotion_smartcase = 1
