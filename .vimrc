@@ -167,6 +167,10 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
+" sneak
+" ignore case
+let g:sneak#use_ic_scs = 1 
+
 " NERDTree
 nnoremap <leader>d :NERDTreeToggle<CR>
 nnoremap <leader>D :NERDTreeFind<CR>
