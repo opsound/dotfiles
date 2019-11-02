@@ -6,7 +6,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'Shougo/denite.nvim'
 Plug 'aymericbeaumet/vim-symlink'
 Plug 'bfrg/vim-cpp-modern'
-Plug 'bkad/CamelCaseMotion'
 Plug 'dense-analysis/ale'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'glts/vim-magnum'
@@ -147,7 +146,7 @@ nnoremap <right> :bn<CR>
 nnoremap <leader><leader> <c-^>
 
 " Open new file adjacent to current file
-nnoremap \e :e <C-R>=expand("%:p:h") . "/" <CR>
+nnoremap <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
 " easymotion
 let g:EasyMotion_smartcase = 1
