@@ -1,4 +1,4 @@
-" Vim: set fdm=marker fmr={{{,}}} fdl=0 fdls=-1:
+" Vim: set fdm=marker fmr={{{,}}} fdl=1 fdls=-1:
 
 " Plugins {{{
 call plug#begin('~/.vim/plugged')
