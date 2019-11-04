@@ -15,7 +15,9 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
+Plug 'justinmk/vim-dirvish'
 Plug 'justinmk/vim-sneak'
+Plug 'justinmk/vim-syntax-extra'
 Plug 'moll/vim-bbye' 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'rakr/vim-one'
