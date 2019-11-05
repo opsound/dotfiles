@@ -95,6 +95,7 @@ colorscheme one
 " }}}
 
 " Settings {{{
+set hlsearch
 set hidden
 set number
 set autoread
@@ -116,7 +117,6 @@ nnoremap <silent> <C-l> :nohl<CR><C-l>
 
 " Copy & paste to system clipboard with <Space>p and <Space>y:
 vmap <leader>y "+y
-vmap <leader>d "+d
 nmap <leader>p "+p
 nmap <leader>P "+P
 vmap <leader>p "+p
@@ -172,9 +172,8 @@ endfunction
 " ignore case
 let g:sneak#use_ic_scs = 1 
 
-" NERDTree
-nnoremap <leader>d :NERDTreeToggle<CR>
-nnoremap <leader>D :NERDTreeFind<CR>
+" Dirvish
+nnoremap <leader>d :Dirvish %<CR>
 
 " ALE
 nnoremap <silent><leader>k :ALEGoToDefinition<CR>
