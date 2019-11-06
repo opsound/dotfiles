@@ -148,6 +148,7 @@ nnoremap <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_do_mapping = 0
 
+" coc
 " Use tab for trigger completion with characters ahead and navigate.
 " " Use command ':verbose imap <tab>' to make sure tab is not mapped by other
 " plugin.
@@ -161,6 +162,13 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+nmap <silent> E <Plug>(coc-diagnostic-prev)
+nmap <silent> W <Plug>(coc-diagnostic-next)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 " lightline
 let g:lightline = {
