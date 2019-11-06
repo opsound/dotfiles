@@ -3,14 +3,11 @@
 " Plugins {{{
 call plug#begin('~/.vim/plugged')
             
-Plug 'Shougo/denite.nvim'
 Plug 'aymericbeaumet/vim-symlink'
-Plug 'bfrg/vim-cpp-modern'
 Plug 'dense-analysis/ale'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'glts/vim-magnum'
 Plug 'glts/vim-radical'
-Plug 'janko/vim-test'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -21,8 +18,6 @@ Plug 'justinmk/vim-syntax-extra'
 Plug 'moll/vim-bbye' 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'rakr/vim-one'
-Plug 'rhysd/vim-clang-format'
-Plug 'scrooloose/nerdtree'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
@@ -31,7 +26,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
 Plug 'wellle/targets.vim'
 
