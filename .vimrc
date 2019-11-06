@@ -35,7 +35,7 @@ call plug#end()
 let mapleader=" "
 
 " Facebook {{{
-if system("name") =~ "facebook"
+if system("hostname") =~ "facebook"
   source $LOCAL_ADMIN_SCRIPTS/master.vimrc
   source $ADMIN_SCRIPTS/vim/biggrep.vim
   
