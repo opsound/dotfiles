@@ -109,8 +109,6 @@ set gdefault
 
 " Keybindings {{{
 
-nnoremap <silent> <C-l> :nohl<CR><C-l>
-
 " Copy & paste to system clipboard with <Space>p and <Space>y:
 vmap <leader>y "+y
 nmap <leader>p "+p
