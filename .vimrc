@@ -19,6 +19,7 @@ Plug 'justinmk/vim-syntax-extra'
 Plug 'moll/vim-bbye' 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'rakr/vim-one'
+Plug 'rust-lang/rust.vim'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
@@ -147,6 +148,9 @@ nnoremap <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 " easymotion
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_do_mapping = 0
+
+"rust
+let g:rustfmt_autosave = 1
 
 " coc
 " Use tab for trigger completion with characters ahead and navigate.
