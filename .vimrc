@@ -6,6 +6,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'aymericbeaumet/vim-symlink'
 Plug 'dense-analysis/ale'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'elixir-editors/vim-elixir'
 Plug 'glts/vim-magnum'
 Plug 'glts/vim-radical'
 Plug 'itchyny/lightline.vim'
