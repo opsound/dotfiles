@@ -239,3 +239,13 @@ nnoremap <leader>gg :G<CR>
 nnoremap <leader>gp :Gpush<CR>
 nnoremap <leader>gf :Gpull<CR>
 " }}}
+
+nmap <F8> <Plug>(ale_fix)
+let g:ale_fixers = {
+\   'c': [
+\       'clang-format'
+\   ],
+\   'cpp': [
+\       'clang-format'
+\   ],
+\}
