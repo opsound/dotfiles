@@ -110,6 +110,19 @@ set gdefault
 " }}}
 
 " Keybindings {{{
+nnoremap <C-k> <Esc>
+inoremap <C-k> <Esc>
+vnoremap <C-k> <Esc>
+snoremap <C-k> <Esc>
+xnoremap <C-k> <Esc>
+cnoremap <C-k> <Esc>
+onoremap <C-k> <Esc>
+lnoremap <C-k> <Esc>
+tnoremap <C-k> <Esc>
+
+" Ctrl+h to stop searching
+vnoremap <C-h> :nohlsearch<CR>
+nnoremap <C-h> :nohlsearch<CR>
 
 " Copy & paste to system clipboard with <Space>p and <Space>y:
 vmap <leader>y "+y
@@ -118,12 +131,16 @@ nmap <leader>P "+P
 vmap <leader>p "+p
 vmap <leader>P "+P
 
+" Keymap for replacing up to next _ or -
+noremap <leader>m ct_
+noremap <leader>n ct-
+
 nnoremap <M-o> <C-W>w
 nnoremap <M-0> <C-W>c
 nnoremap <M-1> <C-W>o
 nnoremap <M-2> <C-W>s
 nnoremap <M-3> <C-W>v
-nnoremap <C-k> :Bdelete<CR>
+nnoremap <C-c> :Bdelete<CR>
 
 nnoremap <leader>C :ClangFormatAutoToggle<CR>
 nnoremap <leader>s :w<CR>
@@ -135,10 +152,6 @@ nnoremap <leader>.. :e ~/.vimrc<CR>
 nnoremap <leader>., :w<CR>:source ~/.vimrc<CR>
 nnoremap <leader>.m :w<CR>:source ~/.vimrc<CR>:PlugInstall<CR>
 nnoremap <leader>.n :PlugClean!<CR>
-
-" Left and right can switch buffers
-nnoremap <left> :bp<CR>
-nnoremap <right> :bn<CR>
 
 " <leader><leader> toggles between buffers
 nnoremap <leader><leader> <c-^>
