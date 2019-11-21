@@ -97,7 +97,7 @@ set hlsearch
 set hidden
 set number
 set autoread
-set clipboard=unnamed
+set clipboard+=unnamedplus
 set noswapfile
 set ignorecase
 set smartcase
