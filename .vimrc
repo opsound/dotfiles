@@ -21,6 +21,7 @@ Plug 'moll/vim-bbye'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'rakr/vim-one'
 Plug 'rust-lang/rust.vim'
+Plug 'terryma/vim-expand-region'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
@@ -141,6 +142,10 @@ nnoremap <M-1> <C-W>o
 nnoremap <M-2> <C-W>s
 nnoremap <M-3> <C-W>v
 nnoremap <C-c> :Bdelete<CR>
+
+" expand region
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
 
 " ergonomic save
 nnoremap <leader>s :w<CR>
