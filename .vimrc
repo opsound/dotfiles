@@ -159,10 +159,6 @@ nnoremap <leader><leader> <c-^>
 " Open new file adjacent to current file
 nnoremap <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
-" easymotion
-let g:EasyMotion_smartcase = 1
-let g:EasyMotion_do_mapping = 0
-
 "rust
 let g:rustfmt_autosave = 1
 
