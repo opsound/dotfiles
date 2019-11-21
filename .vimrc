@@ -2,8 +2,9 @@
 
 " Plugins {{{
 call plug#begin('~/.vim/plugged')
-            
+
 Plug 'aymericbeaumet/vim-symlink'
+Plug 'christoomey/vim-tmux-navigator'            
 Plug 'dense-analysis/ale'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'elixir-editors/vim-elixir'
@@ -250,3 +251,11 @@ let g:ale_fixers = {
 \       'clang-format'
 \   ],
 \}
+
+" tmux navigator
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <C-g>h :TmuxNavigateLeft<CR>
+nnoremap <silent> <C-g>j :TmuxNavigateDown<CR>
+nnoremap <silent> <C-g>k :TmuxNavigateUp<CR>
+nnoremap <silent> <C-g>l :TmuxNavigateRight<CR>
+nnoremap <silent> <C-g>\ :TmuxNavigatePrevious<CR>
