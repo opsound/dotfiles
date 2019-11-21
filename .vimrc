@@ -219,7 +219,6 @@ nnoremap <leader>/ :Rg<CR>
 nnoremap <leader>? :Rg <C-R><C-W><CR>
 nnoremap <leader>l :BTags<CR>
 nnoremap <leader>x :Commands<CR>
-nnoremap <C-P> :Commands<CR>
 
 function! s:list_cmd()
   let base = fnamemodify(expand('%'), ':h:.:S')
