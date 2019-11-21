@@ -142,9 +142,10 @@ nnoremap <M-2> <C-W>s
 nnoremap <M-3> <C-W>v
 nnoremap <C-c> :Bdelete<CR>
 
-nnoremap <leader>C :ClangFormatAutoToggle<CR>
+" ergonomic save
 nnoremap <leader>s :w<CR>
-nnoremap <leader>S :ClangFormat<CR>:w<CR>
+
+" cd vim working directory to that of the current file
 nnoremap <leader>cd :cd %:p:h<CR>
 
 " .vimrc
