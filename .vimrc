@@ -166,6 +166,9 @@ nnoremap <leader><leader> <c-^>
 " Open new file adjacent to current file
 nnoremap <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
+" man word under cursor
+nnoremap <leader>M :Man <C-R><C-W><CR>
+
 "rust
 let g:rustfmt_autosave = 1
 
