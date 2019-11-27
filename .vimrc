@@ -109,6 +109,7 @@ set incsearch
 set ignorecase
 set smartcase
 set gdefault
+set colorcolumn=80 " give me a colored column
 " }}}
 
 " Keybindings {{{
@@ -224,10 +225,11 @@ nnoremap <silent><leader>K :ALEGoToDefinitionInVSplit<CR>
 
 " fzf
 nnoremap <leader>f :Files<CR>
-nnoremap <leader>i :History<CR>
+nnoremap <leader>l :Buffers<CR>
+nnoremap <leader>L :History<CR>
 nnoremap <leader>/ :Rg<CR>
 nnoremap <leader>? :Rg <C-R><C-W><CR>
-nnoremap <leader>l :BTags<CR>
+nnoremap <leader>i :BTags<CR>
 nnoremap <leader>x :Commands<CR>
 
 function! s:list_cmd()
