@@ -264,3 +264,17 @@ nnoremap <silent> <C-g>j :TmuxNavigateDown<CR>
 nnoremap <silent> <C-g>k :TmuxNavigateUp<CR>
 nnoremap <silent> <C-g>l :TmuxNavigateRight<CR>
 nnoremap <silent> <C-g>\ :TmuxNavigatePrevious<CR>
+
+" Z - cd to recent / frequent directories
+command! -nargs=* Z :call Z(<f-args>)
+function! Z(...)
+  let cmd = 'fasd -d -e printf'
+  for arg in a:000
+    let cmd = cmd . ' ' . arg
+  endfor
+  let path = system(cmd)
+  if isdirectory(path)
+    echo path
+    exec 'cd' fnameescape(path)
+  endif
+endfunction
