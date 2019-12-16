@@ -10,6 +10,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'elixir-editors/vim-elixir'
 Plug 'glts/vim-magnum'
 Plug 'glts/vim-radical'
+Plug 'godlygeek/tabular'
 Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
