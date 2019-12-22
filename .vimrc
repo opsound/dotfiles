@@ -246,6 +246,12 @@ command! -bang -nargs=? -complete=dir Files
 nnoremap <leader>gg :G<CR>
 nnoremap <leader>gp :Gpush<CR>
 nnoremap <leader>gf :Gpull<CR>
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 " }}}
 
 nmap <F8> <Plug>(ale_fix)
