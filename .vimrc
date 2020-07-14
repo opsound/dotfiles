@@ -20,6 +20,7 @@ Plug 'justinmk/vim-dirvish'
 Plug 'justinmk/vim-sneak'
 Plug 'justinmk/vim-syntax-extra'
 Plug 'liuchengxu/vim-clap'
+Plug 'liuchengxu/vim-which-key'
 Plug 'moll/vim-bbye' 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'rakr/vim-one'
@@ -44,36 +45,6 @@ let mapleader=" "
 if system("hostname") =~ "facebook"
   source $LOCAL_ADMIN_SCRIPTS/master.vimrc
   source $ADMIN_SCRIPTS/vim/biggrep.vim
-  
-  " coc
-  let g:coc_node_path = expand("/data/users/$USER/fbsource/xplat/third-party/node/bin/node")
-  let g:coc_filetype_map = {'cc': 'cpp'}
-  
-  " biggrep
-  let repo_path = system('hg root')
-  let repo_initial = 'f'
-  if repo_path =~# 'configerator'
-    let repo_initial = 'c'
-  elseif repo_path =~# 'www'
-    let repo_initial = 't'
-  elseif repo_path =~# 'fbcode'
-    let repo_initial = 'f'
-  endif
-  
-  command! -bang -nargs=* Bg
-        \ call fzf#vim#grep(
-        \   repo_initial . 'bgs --color=on '.shellescape(<q-args>) .
-        \ '| sed "s,^[^/]*/,,"' .
-        \ '| sed "s#^#$(hg root)/#g"', 1,
-        \   <bang>0 ? fzf#vim#with_preview('up:60%')
-        \           : fzf#vim#with_preview('up:55%:hidden', '?'),
-        \   <bang>0)
-  
-  noremap gs :Bg <C-r><C-w><CR>
-  
-  " buck
-  nnoremap <leader>bb :Dispatch buck build $(buck query "owner('$(realpath %)')" \| head -1) \| cat<CR>
-  nnoremap <leader>bt :Dispatch buck test $(buck query "owner('$(realpath %)')" \| head -1) \| cat<CR>
   
   " myc
   set rtp+=/usr/local/share/myc/vim
@@ -107,6 +78,7 @@ set ignorecase
 set smartcase
 set gdefault
 set colorcolumn=80 " give me a colored column
+set tabstop=8
 " }}}
 
 " Keybindings {{{
@@ -123,6 +95,9 @@ tnoremap <C-k> <Esc>
 " Ctrl+h to stop searching
 vnoremap <C-h> :nohlsearch<CR>
 nnoremap <C-h> :nohlsearch<CR>
+
+" WhichKey
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
 " Copy & paste to system clipboard with <Space>p and <Space>y:
 vmap <leader>y "+y
@@ -228,6 +203,7 @@ nnoremap <leader>/ :Rg<CR>
 nnoremap <leader>? :Rg <C-R><C-W><CR>
 nnoremap <leader>i :BTags<CR>
 nnoremap <leader>x :Commands<CR>
+nnoremap <leader>h :Clap blines<CR>
 
 function! s:list_cmd()
   let base = fnamemodify(expand('%'), ':h:.:S')
