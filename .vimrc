@@ -5,7 +5,6 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'aymericbeaumet/vim-symlink'
 Plug 'christoomey/vim-tmux-navigator'            
-Plug 'dense-analysis/ale'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'elixir-editors/vim-elixir'
 Plug 'glts/vim-magnum'
@@ -19,8 +18,9 @@ Plug 'junegunn/goyo.vim'
 Plug 'justinmk/vim-dirvish'
 Plug 'justinmk/vim-sneak'
 Plug 'justinmk/vim-syntax-extra'
-Plug 'liuchengxu/vim-clap'
+Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
 Plug 'liuchengxu/vim-which-key'
+Plug 'liuchengxu/vista.vim'
 Plug 'moll/vim-bbye' 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'rakr/vim-one'
@@ -189,17 +189,14 @@ let g:sneak#use_ic_scs = 1
 " Dirvish
 nnoremap <leader>d :Dirvish %<CR>
 
-" ALE
-nnoremap <silent><leader>k :ALEGoToDefinition<CR>
-nnoremap <silent><leader>K :ALEGoToDefinitionInVSplit<CR>
-
 " fzf
-nnoremap <leader>f :Files<CR>
-nnoremap <leader>l :Buffers<CR>
-nnoremap <leader>L :History<CR>
-nnoremap <leader>/ :Rg<CR>
-nnoremap <leader>? :Rg <C-R><C-W><CR>
-nnoremap <leader>i :BTags<CR>
+nnoremap <C-s> :Clap blines<CR>
+nnoremap <leader>f :Clap files<CR>
+nnoremap <leader>F :Clap filer<CR>
+nnoremap <leader>l :Clap buffers<CR>
+nnoremap <leader>/ :Clap grep2<CR>
+nnoremap <leader>? :Clap grep2 ++query=<cword><CR>
+nnoremap <leader>i :Clap tags<CR>
 nnoremap <leader>x :Commands<CR>
 nnoremap <leader>h :Clap blines<CR>
 
@@ -223,16 +220,6 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 " }}}
-
-nmap <F8> <Plug>(ale_fix)
-let g:ale_fixers = {
-\   'c': [
-\       'clang-format'
-\   ],
-\   'cpp': [
-\       'clang-format'
-\   ],
-\}
 
 " tmux navigator
 let g:tmux_navigator_no_mappings = 1
