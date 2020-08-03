@@ -45,8 +45,6 @@ let mapleader=" "
 if system("hostname") =~ "facebook"
   source $LOCAL_ADMIN_SCRIPTS/master.vimrc
   source $ADMIN_SCRIPTS/vim/biggrep.vim
-  
-  " myc
   set rtp+=/usr/local/share/myc/vim
   nnoremap <leader>j :MYC<CR>
 endif
