@@ -1,6 +1,3 @@
-" Vim: set fdm=marker fmr={{{,}}} fdl=1 fdls=-1:
-
-" Plugins {{{
 call plug#begin('~/.vim/plugged')
 
 Plug 'aymericbeaumet/vim-symlink'
@@ -37,20 +34,16 @@ Plug 'tpope/vim-surround'
 Plug 'wellle/targets.vim'
 
 call plug#end()
-" }}}
 
 let mapleader=" "
 
-" Facebook {{{
 if system("hostname") =~ "facebook"
   source $LOCAL_ADMIN_SCRIPTS/master.vimrc
   source $ADMIN_SCRIPTS/vim/biggrep.vim
   set rtp+=/usr/local/share/myc/vim
   nnoremap <leader>j :MYC<CR>
 endif
-" }}}
 
-" Colors {{{
 set termguicolors
 set background=dark
 set t_Co=256 
@@ -58,9 +51,7 @@ if !has('nvim')
   set term=xterm-256color
 endif
 colorscheme one
-" }}}
 
-" Settings {{{
 set hlsearch
 set hidden
 set number
@@ -75,11 +66,10 @@ set incsearch
 set ignorecase
 set smartcase
 set gdefault
-set colorcolumn=80 " give me a colored column
+" give me a colored column
+set colorcolumn=80 
 set tabstop=8
-" }}}
 
-" Keybindings {{{
 nnoremap <C-k> <Esc>
 inoremap <C-k> <Esc>
 vnoremap <C-k> <Esc>
@@ -219,7 +209,6 @@ xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
-" }}}
 
 " tmux navigator
 let g:tmux_navigator_no_mappings = 1
