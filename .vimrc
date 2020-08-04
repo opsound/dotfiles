@@ -184,8 +184,9 @@ nnoremap <C-s> :Clap blines<CR>
 nnoremap <leader>f :Clap files<CR>
 nnoremap <leader>F :Clap filer<CR>
 nnoremap <leader>l :Clap buffers<CR>
-nnoremap <leader>/ :Clap grep2<CR>
-nnoremap <leader>? :Clap grep2 ++query=<cword><CR>
+nnoremap <leader>L :Clap history<CR>
+nnoremap <leader>/ :Clap grep<CR>
+nnoremap <leader>? :Clap grep ++query=<cword><CR>
 nnoremap <leader>i :Clap tags<CR>
 nnoremap <leader>x :Commands<CR>
 nnoremap <leader>h :Clap blines<CR>
