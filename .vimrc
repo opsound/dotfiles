@@ -180,11 +180,12 @@ let g:sneak#use_ic_scs = 1
 nnoremap <leader>d :Dirvish %<CR>
 
 " fzf
-nnoremap <C-s> :Clap blines<CR>
-nnoremap <leader>f :Clap files<CR>
+nnoremap <C-s> :Clap blines ++ef=maple +async<CR>
+nnoremap <leader>f :Clap files ++ef=maple +async<CR>
 nnoremap <leader>F :Clap filer<CR>
 nnoremap <leader>l :Clap buffers<CR>
 nnoremap <leader>L :Clap history<CR>
+nnoremap <leader>j :Clap jumps<CR>
 nnoremap <leader>/ :Clap grep<CR>
 nnoremap <leader>? :Clap grep ++query=<cword><CR>
 nnoremap <leader>i :Clap tags<CR>
