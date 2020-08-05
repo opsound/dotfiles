@@ -120,6 +120,7 @@ nnoremap <leader>.. :e ~/.vimrc<CR>
 nnoremap <leader>., :w<CR>:source ~/.vimrc<CR>
 nnoremap <leader>.m :w<CR>:source ~/.vimrc<CR>:PlugInstall<CR>
 nnoremap <leader>.n :PlugClean!<CR>
+nnoremap <leader>.b :PlugUpdate<CR>
 
 " <leader><leader> toggles between buffers
 nnoremap <leader><leader> <c-^>
