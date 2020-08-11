@@ -182,7 +182,8 @@ let g:sneak#use_ic_scs = 1
 " Dirvish
 nnoremap <leader>d :Dirvish %<CR>
 
-" fzf
+" Clap
+let g:clap_layout = { 'width': '90%', 'height': '33%', 'row': '33%', 'col': '5%' }
 nnoremap <leader>S :Clap blines ++ef=maple +async<CR>
 nnoremap <leader>f :Clap files ++ef=maple +async<CR>
 nnoremap <leader>F :Clap filer<CR>
@@ -190,7 +191,7 @@ nnoremap <leader>l :Clap buffers<CR>
 nnoremap <leader>L :Clap history<CR>
 nnoremap <leader>j :Clap jumps<CR>
 nnoremap <leader>/ :Clap grep<CR>
-nnoremap <leader>? :Clap grep ++query=<cword><CR>
+nnoremap <leader>? :Clap grep ++query=<cword><CR>a<BS>
 nnoremap <leader>i :Clap tags<CR>
 nnoremap <leader>x :Commands<CR>
 nnoremap <leader>h :Clap blines<CR>
