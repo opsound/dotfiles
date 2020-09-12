@@ -1,3 +1,9 @@
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'aymericbeaumet/vim-symlink'
@@ -136,21 +142,6 @@ nnoremap <leader>M :Man <C-R><C-W><CR>
 "rust
 let g:rustfmt_autosave = 1
 
-" coc
-" Use tab for trigger completion with characters ahead and navigate.
-" " Use command ':verbose imap <tab>' to make sure tab is not mapped by other
-" plugin.
-inoremap <silent><expr> <TAB>
-  \ pumvisible() ? "\<C-n>" :
-  \ <SID>check_back_space() ? "\<TAB>" :
-  \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
 nmap <silent> E <Plug>(coc-diagnostic-prev)
 nmap <silent> W <Plug>(coc-diagnostic-next)
 nmap <silent> gd <Plug>(coc-definition)
@@ -159,21 +150,8 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gR <Plug>(coc-rename)
 
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
 " lightline
-let g:lightline = {
-  \ 'colorscheme': 'one',
-  \ }
+let g:lightline = { 'colorscheme': 'one' }
 
 " sneak
 " ignore case
@@ -196,15 +174,6 @@ nnoremap <leader>i :Clap tags<CR>
 nnoremap <leader>x :Commands<CR>
 nnoremap <leader>h :Clap blines<CR>
 
-function! s:list_cmd()
-  let base = fnamemodify(expand('%'), ':h:.:S')
-  return base == '.' ? 'fd --type file --follow' : printf('fd --type file --follow | proximity-sort %s', shellescape(expand('%')))
-endfunction
-
-command! -bang -nargs=? -complete=dir Files
-  \ call fzf#vim#files(<q-args>, {'source': s:list_cmd(),
-  \                               'options': '--tiebreak=index'}, <bang>0)
-
 " fugitive
 nnoremap <leader>gg :G<CR>
 nnoremap <leader>gp :Gpush<CR>
@@ -223,17 +192,3 @@ nnoremap <silent> <C-g>j :TmuxNavigateDown<CR>
 nnoremap <silent> <C-g>k :TmuxNavigateUp<CR>
 nnoremap <silent> <C-g>l :TmuxNavigateRight<CR>
 nnoremap <silent> <C-g>\ :TmuxNavigatePrevious<CR>
-
-" Z - cd to recent / frequent directories
-command! -nargs=* Z :call Z(<f-args>)
-function! Z(...)
-  let cmd = 'fasd -d -e printf'
-  for arg in a:000
-    let cmd = cmd . ' ' . arg
-  endfor
-  let path = system(cmd)
-  if isdirectory(path)
-    echo path
-    exec 'cd' fnameescape(path)
-  endif
-endfunction
