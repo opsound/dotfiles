@@ -16,7 +16,6 @@ Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'justinmk/vim-dirvish'
 Plug 'justinmk/vim-sneak'
