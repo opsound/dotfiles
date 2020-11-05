@@ -10,10 +10,12 @@ Plug 'aymericbeaumet/vim-symlink'
 Plug 'christoomey/vim-tmux-navigator'            
 Plug 'editorconfig/editorconfig-vim'
 Plug 'elixir-editors/vim-elixir'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'glts/vim-magnum'
 Plug 'glts/vim-radical'
 Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
+Plug 'joshdick/onedark.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
@@ -21,11 +23,9 @@ Plug 'justinmk/vim-dirvish'
 Plug 'justinmk/vim-sneak'
 Plug 'justinmk/vim-syntax-extra'
 Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
-Plug 'liuchengxu/vim-which-key'
 Plug 'liuchengxu/vista.vim'
 Plug 'moll/vim-bbye' 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'rakr/vim-one'
 Plug 'rhysd/vim-clang-format'
 Plug 'rust-lang/rust.vim'
 Plug 'terryma/vim-expand-region'
@@ -39,6 +39,7 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'vim-utils/vim-man'
 Plug 'wellle/targets.vim'
+Plug 'ziglang/zig.vim'
 
 call plug#end()
 
@@ -52,12 +53,11 @@ if system("hostname") =~ "facebook"
 endif
 
 set termguicolors
-set background=dark
 set t_Co=256 
 if !has('nvim')
   set term=xterm-256color
 endif
-colorscheme one
+colorscheme onedark
 
 set hlsearch
 set hidden
