@@ -98,11 +98,6 @@ vmap <leader>P "+P
 noremap <leader>m ct_
 noremap <leader>n ct-
 
-nnoremap <M-o> <C-W>w
-nnoremap <M-0> <C-W>c
-nnoremap <M-1> <C-W>o
-nnoremap <M-2> <C-W>s
-nnoremap <M-3> <C-W>v
 nnoremap <C-c> :Bdelete<CR>
 
 " expand region
