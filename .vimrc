@@ -62,14 +62,10 @@ colorscheme onedark
 set hlsearch
 set hidden
 set number
-set autoread
 set clipboard+=unnamedplus
 set noswapfile
-set ignorecase
-set smartcase
 set cursorline
 set mouse=a
-set incsearch
 set ignorecase
 set smartcase
 set gdefault
@@ -90,9 +86,6 @@ tnoremap <C-k> <Esc>
 " Ctrl+h to stop searching
 vnoremap <C-h> :nohlsearch<CR>
 nnoremap <C-h> :nohlsearch<CR>
-
-" WhichKey
-nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
 " Copy & paste to system clipboard with <Space>p and <Space>y:
 vmap <leader>y "+y
