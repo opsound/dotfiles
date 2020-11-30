@@ -69,8 +69,6 @@ set mouse=a
 set ignorecase
 set smartcase
 set gdefault
-" give me a colored column
-set colorcolumn=80 
 set tabstop=8
 
 nnoremap <C-k> <Esc>
@@ -106,7 +104,9 @@ vmap <C-v> <Plug>(expand_region_shrink)
 
 " ergonomic save
 nnoremap <leader>s :w<CR>
-
+" save no autocmds
+nnoremap <leader>w :noa w<CR>
+"
 " cd vim working directory to that of the current file
 nnoremap <leader>cd :cd %:p:h<CR>
 
@@ -154,7 +154,7 @@ nnoremap <leader>f :Clap files ++ef=maple +async<CR>
 nnoremap <leader>F :Clap filer<CR>
 nnoremap <leader>l :Clap buffers<CR>
 nnoremap <leader>L :Clap history<CR>
-nnoremap <leader>j :Clap jumps<CR>
+nnoremap <leader>J :Clap jumps<CR>
 nnoremap <leader>/ :Clap grep<CR>
 nnoremap <leader>? :Clap grep ++query=<cword><CR>a<BS>
 nnoremap <leader>i :Clap tags<CR>
