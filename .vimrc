@@ -6,19 +6,17 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'arcticicestudio/nord-vim'
 Plug 'aymericbeaumet/vim-symlink'
+Plug 'cespare/vim-toml'
 Plug 'christoomey/vim-tmux-navigator'            
 Plug 'editorconfig/editorconfig-vim'
-Plug 'elixir-editors/vim-elixir'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'glts/vim-magnum'
 Plug 'glts/vim-radical'
 Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'joshdick/onedark.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/vim-easy-align'
 Plug 'justinmk/vim-dirvish'
 Plug 'justinmk/vim-sneak'
 Plug 'justinmk/vim-syntax-extra'
@@ -57,18 +55,16 @@ set t_Co=256
 if !has('nvim')
   set term=xterm-256color
 endif
-colorscheme onedark
+colorscheme nord
 
 set hlsearch
 set hidden
 set number
-set clipboard+=unnamedplus
 set noswapfile
 set cursorline
 set mouse=a
 set ignorecase
 set smartcase
-set gdefault
 set tabstop=8
 
 nnoremap <C-k> <Esc>
@@ -137,9 +133,6 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gR <Plug>(coc-rename)
 
-" lightline
-let g:lightline = { 'colorscheme': 'one' }
-
 " sneak
 " ignore case
 let g:sneak#use_ic_scs = 1 
@@ -148,7 +141,6 @@ let g:sneak#use_ic_scs = 1
 nnoremap <leader>d :Dirvish %<CR>
 
 " Clap
-let g:clap_layout = { 'width': '90%', 'height': '33%', 'row': '33%', 'col': '5%' }
 nnoremap <leader>S :Clap blines ++ef=maple +async<CR>
 nnoremap <leader>f :Clap files ++ef=maple +async<CR>
 nnoremap <leader>F :Clap filer<CR>
