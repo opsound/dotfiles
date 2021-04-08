@@ -59,6 +59,8 @@ if !has('nvim')
 endif
 colorscheme nord
 
+let g:lightline = { 'colorscheme': 'nord' }
+
 set hlsearch
 set hidden
 set number
