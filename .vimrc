@@ -24,6 +24,7 @@ Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
 Plug 'liuchengxu/vista.vim'
 Plug 'moll/vim-bbye' 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'rhysd/vim-clang-format'
 Plug 'rust-lang/rust.vim'
 Plug 'terryma/vim-expand-region'
@@ -35,6 +36,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
+Plug 'vhdirk/vim-cmake'
 Plug 'vim-utils/vim-man'
 Plug 'wellle/targets.vim'
 Plug 'ziglang/zig.vim'
