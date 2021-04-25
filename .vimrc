@@ -24,7 +24,7 @@ Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
 Plug 'liuchengxu/vista.vim'
 Plug 'moll/vim-bbye' 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+Plug 'psf/black'
 Plug 'rhysd/vim-clang-format'
 Plug 'rust-lang/rust.vim'
 Plug 'terryma/vim-expand-region'
@@ -37,6 +37,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'vhdirk/vim-cmake'
+Plug 'vim-test/vim-test'
 Plug 'vim-utils/vim-man'
 Plug 'wellle/targets.vim'
 Plug 'ziglang/zig.vim'
@@ -162,12 +163,6 @@ nnoremap <leader>gg :G<CR>
 nnoremap <leader>gp :Gpush<CR>
 nnoremap <leader>gf :Gpull<CR>
 
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-
 " tmux navigator
 let g:tmux_navigator_no_mappings = 1
 nnoremap <silent> <C-g>h :TmuxNavigateLeft<CR>
@@ -175,3 +170,5 @@ nnoremap <silent> <C-g>j :TmuxNavigateDown<CR>
 nnoremap <silent> <C-g>k :TmuxNavigateUp<CR>
 nnoremap <silent> <C-g>l :TmuxNavigateRight<CR>
 nnoremap <silent> <C-g>\ :TmuxNavigatePrevious<CR>
+
+autocmd BufWritePre *.py :Black
