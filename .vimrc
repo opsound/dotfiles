@@ -18,7 +18,6 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-dirvish'
-Plug 'justinmk/vim-sneak'
 Plug 'justinmk/vim-syntax-extra'
 Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
 Plug 'liuchengxu/vista.vim'
@@ -137,10 +136,6 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gR <Plug>(coc-rename)
-
-" sneak
-" ignore case
-let g:sneak#use_ic_scs = 1 
 
 " Dirvish
 nnoremap <leader>d :Dirvish %<CR>
