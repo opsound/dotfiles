@@ -15,8 +15,7 @@ Plug 'glts/vim-magnum'
 Plug 'glts/vim-radical'
 Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'justinmk/vim-dirvish'
 Plug 'justinmk/vim-syntax-extra'
 Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
@@ -152,8 +151,8 @@ nnoremap <leader>h :Clap blines<CR>
 
 " fugitive
 nnoremap <leader>gg :G<CR>
-nnoremap <leader>gp :Gpush<CR>
-nnoremap <leader>gf :Gpull<CR>
+nnoremap <leader>gp :Git push<CR>
+nnoremap <leader>gf :Git pull --rebase<CR>
 
 " tmux navigator
 let g:tmux_navigator_no_mappings = 1
