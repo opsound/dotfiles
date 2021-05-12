@@ -23,6 +23,7 @@ Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
 Plug 'liuchengxu/vista.vim'
 Plug 'moll/vim-bbye' 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'ojroques/vim-oscyank'
 Plug 'psf/black'
 Plug 'rhysd/vim-clang-format'
 Plug 'rust-lang/rust.vim'
@@ -85,12 +86,8 @@ tnoremap <C-k> <Esc>
 vnoremap <C-h> :nohlsearch<CR>
 nnoremap <C-h> :nohlsearch<CR>
 
-" Copy & paste to system clipboard with <Space>p and <Space>y:
-vmap <leader>y "+y
-nmap <leader>p "+p
-nmap <leader>P "+P
-vmap <leader>p "+p
-vmap <leader>P "+P
+" Copy text to the system clipboard from anywhere using the ANSI OCS52 sequence
+vnoremap <leader>c :OSCYank<CR>
 
 " Keymap for replacing up to next _ or -
 noremap <leader>m ct_
