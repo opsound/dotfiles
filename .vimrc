@@ -72,6 +72,7 @@ set shortmess+=c
 set signcolumn=number
 set smartcase
 set tabstop=8
+set signcolumn=number
 
 nnoremap <C-k> <Esc>
 inoremap <C-k> <Esc>
