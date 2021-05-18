@@ -6,11 +6,11 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'arcticicestudio/nord-vim'
 Plug 'aymericbeaumet/vim-symlink'
 Plug 'cespare/vim-toml'
 Plug 'christoomey/vim-tmux-navigator'            
 Plug 'editorconfig/editorconfig-vim'
+Plug 'folke/tokyonight.nvim'
 Plug 'glts/vim-magnum'
 Plug 'glts/vim-radical'
 Plug 'hrsh7th/nvim-compe'
@@ -18,13 +18,13 @@ Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'justinmk/vim-dirvish'
 Plug 'moll/vim-bbye' 
-Plug 'ojroques/vim-oscyank'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/lsp_extensions.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'ojroques/vim-oscyank'
 Plug 'psf/black'
 Plug 'rhysd/vim-clang-format'
 Plug 'terryma/vim-expand-region'
@@ -38,6 +38,7 @@ Plug 'tpope/vim-surround'
 Plug 'vhdirk/vim-cmake'
 Plug 'vim-utils/vim-man'
 Plug 'wellle/targets.vim'
+Plug 'windwp/nvim-autopairs'
 Plug 'ziglang/zig.vim'
 
 call plug#end()
@@ -56,9 +57,9 @@ set t_Co=256
 if !has('nvim')
   set term=xterm-256color
 endif
-colorscheme nord
+colorscheme tokyonight
 
-let g:lightline = { 'colorscheme': 'nord' }
+let g:lightline = { 'colorscheme': 'tokyonight' }
 
 set completeopt=menuone,noinsert,noselect
 set cursorline
@@ -152,22 +153,19 @@ nnoremap <silent> <C-g>l :TmuxNavigateRight<CR>
 nnoremap <silent> <C-g>\ :TmuxNavigatePrevious<CR>
 
 autocmd BufWritePre *.py :Black
+autocmd BufWritePre *.{c,cpp,h} :ClangFormat
 
-" treesitter
 lua <<EOF
+require'nvim-autopairs'.setup()
+
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained",
   highlight = {
     enable = true,
+    disable = { "rust" },
   },
-  indent = {
-    enable = true,
-  }
 }
-EOF
 
-" completion
-lua <<EOF
 require'lspconfig'.rust_analyzer.setup{}
 
 require'compe'.setup({
@@ -178,6 +176,28 @@ source = {
   nvim_lsp = true,
   },
 })
+
+local remap = vim.api.nvim_set_keymap
+local npairs = require('nvim-autopairs')
+
+-- skip it, if you use another global object
+_G.MUtils= {}
+
+vim.g.completion_confirm_key = ""
+MUtils.completion_confirm=function()
+  if vim.fn.pumvisible() ~= 0  then
+    if vim.fn.complete_info()["selected"] ~= -1 then
+      return vim.fn["compe#confirm"](npairs.esc("<cr>"))
+    else
+      return npairs.esc("<cr>")
+    end
+  else
+    return npairs.autopairs_cr()
+  end
+end
+
+
+remap('i' , '<CR>','v:lua.MUtils.completion_confirm()', {expr = true , noremap = true})
 EOF
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
@@ -189,7 +209,7 @@ nmap <silent> E <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nmap <silent> W <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 nmap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
 nmap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+nmap <silent> gR <cmd>lua vim.lsp.buf.rename()<CR>
 nmap <silent> ga <cmd>lua vim.lsp.buf.code_action()<CR>
 
 autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 1000)
-
