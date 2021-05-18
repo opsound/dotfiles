@@ -13,19 +13,20 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'glts/vim-magnum'
 Plug 'glts/vim-radical'
+Plug 'hrsh7th/nvim-compe'
 Plug 'itchyny/lightline.vim'
-Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'justinmk/vim-dirvish'
-Plug 'justinmk/vim-syntax-extra'
-Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
-Plug 'liuchengxu/vista.vim'
 Plug 'moll/vim-bbye' 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ojroques/vim-oscyank'
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/lsp_extensions.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'psf/black'
 Plug 'rhysd/vim-clang-format'
-Plug 'rust-lang/rust.vim'
 Plug 'terryma/vim-expand-region'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-commentary'
@@ -33,10 +34,8 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'vhdirk/vim-cmake'
-Plug 'vim-test/vim-test'
 Plug 'vim-utils/vim-man'
 Plug 'wellle/targets.vim'
 Plug 'ziglang/zig.vim'
@@ -61,13 +60,16 @@ colorscheme nord
 
 let g:lightline = { 'colorscheme': 'nord' }
 
-set hlsearch
-set hidden
-set number
-set noswapfile
+set completeopt=menuone,noinsert,noselect
 set cursorline
-set mouse=a
+set hidden
+set hlsearch
 set ignorecase
+set mouse=a
+set noswapfile
+set number
+set shortmess+=c
+set signcolumn=number
 set smartcase
 set tabstop=8
 
@@ -122,32 +124,18 @@ nnoremap <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 " man word under cursor
 nnoremap <leader>M :Man <C-R><C-W><CR>
 
-"rust
-let g:rustfmt_autosave = 1
-
-nmap <silent> E <Plug>(coc-diagnostic-prev)
-nmap <silent> W <Plug>(coc-diagnostic-next)
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gR <Plug>(coc-rename)
-
 " Dirvish
 nnoremap <leader>d :Dirvish %<CR>
 
 " Clap
-nnoremap <leader>S :Clap blines ++ef=maple +async<CR>
-nnoremap <leader>f :Clap files ++ef=maple +async<CR>
-nnoremap <leader>F :Clap filer<CR>
-nnoremap <leader>l :Clap buffers<CR>
-nnoremap <leader>L :Clap history<CR>
-nnoremap <leader>J :Clap jumps<CR>
-nnoremap <leader>/ :Clap grep<CR>
-nnoremap <leader>? :Clap grep ++query=<cword><CR>a<BS>
-nnoremap <leader>i :Clap tags<CR>
-nnoremap <leader>x :Commands<CR>
-nnoremap <leader>h :Clap blines<CR>
+nnoremap <leader>f <cmd>Telescope find_files<CR>
+nnoremap <leader>F <cmd>Telescope file_browser<CR>
+nnoremap <leader>l <cmd>Telescope buffers<CR>
+nnoremap <leader>L <cmd>Telescope oldfiles<CR>
+nnoremap <leader>/ <cmd>Telescope live_grep<CR>
+nnoremap <leader>? <cmd>Telescope grep_string<CR>
+nnoremap <leader>i <cmd>Telescope treesitter<CR>
+nnoremap <leader>x <cmd>Telescope commands<CR>
 
 " fugitive
 nnoremap <leader>gg :G<CR>
@@ -163,3 +151,44 @@ nnoremap <silent> <C-g>l :TmuxNavigateRight<CR>
 nnoremap <silent> <C-g>\ :TmuxNavigatePrevious<CR>
 
 autocmd BufWritePre *.py :Black
+
+" treesitter
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained",
+  highlight = {
+    enable = true,
+  },
+  indent = {
+    enable = true,
+  }
+}
+EOF
+
+" completion
+lua <<EOF
+require'lspconfig'.rust_analyzer.setup{}
+
+require'compe'.setup({
+enabled = true,
+source = {
+  path = true,
+  buffer = true,
+  nvim_lsp = true,
+  },
+})
+EOF
+
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+nnoremap <leader>T :lua require'lsp_extensions'.inlay_hints()<CR>
+nmap <silent> E <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+nmap <silent> W <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+nmap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+nmap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+nmap <silent> ga <cmd>lua vim.lsp.buf.code_action()<CR>
+
+autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 1000)
+
