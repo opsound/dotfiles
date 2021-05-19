@@ -73,7 +73,6 @@ set shortmess+=c
 set signcolumn=number
 set smartcase
 set tabstop=8
-set signcolumn=number
 
 nnoremap <C-k> <Esc>
 inoremap <C-k> <Esc>
@@ -106,7 +105,7 @@ vmap <C-v> <Plug>(expand_region_shrink)
 nnoremap <leader>s :w<CR>
 " save no autocmds
 nnoremap <leader>w :noa w<CR>
-"
+" 
 " cd vim working directory to that of the current file
 nnoremap <leader>cd :cd %:p:h<CR>
 
@@ -120,8 +119,11 @@ nnoremap <leader>.b :PlugUpdate<CR>
 " <leader><leader> toggles between buffers
 nnoremap <leader><leader> <c-^>
 
+" Refresh buffer
+nnoremap <leader>e :e!<CR>
+
 " Open new file adjacent to current file
-nnoremap <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+nnoremap <leader>E :e <C-R>=expand("%:p:h") . "/" <CR>
 
 " man word under cursor
 nnoremap <leader>M :Man <C-R><C-W><CR>
@@ -140,17 +142,17 @@ nnoremap <leader>i <cmd>Telescope treesitter<CR>
 nnoremap <leader>x <cmd>Telescope commands<CR>
 
 " fugitive
-nnoremap <leader>gg :G<CR>
-nnoremap <leader>gp :Git push<CR>
-nnoremap <leader>gf :Git pull --rebase<CR>
+nnoremap <leader>gg <cmd>G<CR>
+nnoremap <leader>gp <cmd>Git push<CR>
+nnoremap <leader>gf <cmd>Git pull --rebase<CR>
 
 " tmux navigator
 let g:tmux_navigator_no_mappings = 1
-nnoremap <silent> <C-g>h :TmuxNavigateLeft<CR>
-nnoremap <silent> <C-g>j :TmuxNavigateDown<CR>
-nnoremap <silent> <C-g>k :TmuxNavigateUp<CR>
-nnoremap <silent> <C-g>l :TmuxNavigateRight<CR>
-nnoremap <silent> <C-g>\ :TmuxNavigatePrevious<CR>
+nnoremap <silent> <C-g>h <cmd>TmuxNavigateLeft<CR>
+nnoremap <silent> <C-g>j <cmd>TmuxNavigateDown<CR>
+nnoremap <silent> <C-g>k <cmd>TmuxNavigateUp<CR>
+nnoremap <silent> <C-g>l <cmd>TmuxNavigateRight<CR>
+nnoremap <silent> <C-g>\ <cmd>TmuxNavigatePrevious<CR>
 
 autocmd BufWritePre *.py :Black
 autocmd BufWritePre *.{c,cpp,h} :ClangFormat
