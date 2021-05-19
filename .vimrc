@@ -36,7 +36,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vhdirk/vim-cmake'
-Plug 'vim-utils/vim-man'
 Plug 'wellle/targets.vim'
 Plug 'windwp/nvim-autopairs'
 Plug 'ziglang/zig.vim'
@@ -131,7 +130,7 @@ nnoremap <leader>M :Man <C-R><C-W><CR>
 " Dirvish
 nnoremap <leader>d :Dirvish %<CR>
 
-" Clap
+" Telescope
 nnoremap <leader>f <cmd>Telescope find_files<CR>
 nnoremap <leader>F <cmd>Telescope file_browser<CR>
 nnoremap <leader>l <cmd>Telescope buffers<CR>
