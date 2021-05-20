@@ -16,6 +16,7 @@ Plug 'glts/vim-radical'
 Plug 'hrsh7th/nvim-compe'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-dirvish'
 Plug 'moll/vim-bbye' 
 Plug 'neovim/nvim-lspconfig'
@@ -24,6 +25,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'ojroques/nvim-lspfuzzy'
 Plug 'ojroques/vim-oscyank'
 Plug 'psf/black'
 Plug 'rhysd/vim-clang-format'
@@ -157,7 +159,8 @@ autocmd BufWritePre *.py :Black
 autocmd BufWritePre *.{c,cpp,h} :ClangFormat
 
 lua <<EOF
-require'nvim-autopairs'.setup()
+require'nvim-autopairs'.setup {}
+require'lspfuzzy'.setup {}
 
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained",
@@ -167,22 +170,22 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
-require'lspconfig'.rust_analyzer.setup{}
+require'lspconfig'.rust_analyzer.setup {}
 
-require'compe'.setup({
+require'compe'.setup {
 enabled = true,
 source = {
   path = true,
   buffer = true,
   nvim_lsp = true,
   },
-})
+} 
 
 local remap = vim.api.nvim_set_keymap
 local npairs = require('nvim-autopairs')
 
 -- skip it, if you use another global object
-_G.MUtils= {}
+_G.MUtils = {}
 
 vim.g.completion_confirm_key = ""
 MUtils.completion_confirm=function()
