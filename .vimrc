@@ -26,7 +26,6 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'ojroques/nvim-lspfuzzy'
 Plug 'ojroques/vim-oscyank'
 Plug 'psf/black'
 Plug 'rhysd/vim-clang-format'
@@ -156,7 +155,6 @@ autocmd BufWritePre *.{c,cpp,h} :ClangFormat
 
 lua <<EOF
 require'nvim-autopairs'.setup {}
-require'lspfuzzy'.setup {}
 
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained",
