@@ -13,13 +13,14 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'folke/tokyonight.nvim'
 Plug 'glts/vim-magnum'
 Plug 'glts/vim-radical'
+Plug 'hoob3rt/lualine.nvim'
 Plug 'hrsh7th/nvim-compe'
-Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-dirvish'
 Plug 'moll/vim-bbye' 
 Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/lsp-status.nvim'
 Plug 'nvim-lua/lsp_extensions.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
@@ -55,12 +56,7 @@ endif
 
 set termguicolors
 set t_Co=256 
-if !has('nvim')
-  set term=xterm-256color
-endif
 colorscheme tokyonight
-
-let g:lightline = { 'colorscheme': 'tokyonight' }
 
 set completeopt=menuone,noinsert,noselect
 set cursorline
@@ -170,7 +166,26 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
-require'lspconfig'.rust_analyzer.setup {}
+local lsp_status = require('lsp-status')
+lsp_status.register_progress()
+
+require'lspconfig'.rust_analyzer.setup {
+  on_attach = lsp_status.on_attach,
+  capabilities = lsp_status.capabilities,
+}
+
+local function lspstatus ()
+  if #vim.lsp.buf_get_clients() > 0 then
+    return require'lsp-status'.status()
+  else
+    return ""
+  end
+end
+
+require'lualine'.setup {
+  options = {theme = 'tokyonight'},
+  sections = {lualine_c = {'filename', lspstatus}}
+}
 
 require'compe'.setup {
 enabled = true,
@@ -181,11 +196,9 @@ source = {
   },
 } 
 
-local remap = vim.api.nvim_set_keymap
-local npairs = require('nvim-autopairs')
-
 -- skip it, if you use another global object
-_G.MUtils = {}
+_G.MUtils= {}
+local npairs = require('nvim-autopairs')
 
 vim.g.completion_confirm_key = ""
 MUtils.completion_confirm=function()
@@ -200,7 +213,7 @@ MUtils.completion_confirm=function()
   end
 end
 
-
+local remap = vim.api.nvim_set_keymap
 remap('i' , '<CR>','v:lua.MUtils.completion_confirm()', {expr = true , noremap = true})
 EOF
 
