@@ -128,15 +128,15 @@ nnoremap <leader>M :Man <C-R><C-W><CR>
 nnoremap <leader>d :Dirvish %<CR>
 
 " Telescope
-nnoremap <leader>f <cmd>Telescope find_files<CR>
-nnoremap <leader>F <cmd>Telescope file_browser<CR>
-nnoremap <leader>l <cmd>Telescope buffers<CR>
-nnoremap <leader>L <cmd>Telescope oldfiles<CR>
-nnoremap <leader>/ <cmd>Telescope live_grep<CR>
-nnoremap <leader>? <cmd>Telescope grep_string<CR>
-nnoremap <leader>i <cmd>Telescope treesitter<CR>
-nnoremap <leader>x <cmd>Telescope commands<CR>
-nnoremap <leader>S <cmd>Telescope current_buffer_fuzzy_find<CR>
+nnoremap <leader>f <cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_ivy({}))<CR>
+nnoremap <leader>F <cmd>lua require'telescope.builtin'.file_browser(require('telescope.themes').get_ivy({}))<CR>
+nnoremap <leader>l <cmd>lua require'telescope.builtin'.buffers(require('telescope.themes').get_ivy({}))<CR>
+nnoremap <leader>L <cmd>lua require'telescope.builtin'.oldfiles(require('telescope.themes').get_ivy({}))<CR>
+nnoremap <leader>/ <cmd>lua require'telescope.builtin'.live_grep(require('telescope.themes').get_ivy({}))<CR>
+nnoremap <leader>? <cmd>lua require'telescope.builtin'.grep_string(require('telescope.themes').get_ivy({}))<CR>
+nnoremap <leader>i <cmd>lua require'telescope.builtin'.treesitter(require('telescope.themes').get_ivy({}))<CR>
+nnoremap <leader>x <cmd>lua require'telescope.builtin'.commands(require('telescope.themes').get_ivy({}))<CR>
+nnoremap <leader>S <cmd>lua require'telescope.builtin'.current_buffer_fuzzy_find(require('telescope.themes').get_ivy({}))<CR>
 
 " fugitive
 nnoremap <leader>gg <cmd>G<CR>
