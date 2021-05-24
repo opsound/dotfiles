@@ -136,6 +136,7 @@ nnoremap <leader>/ <cmd>Telescope live_grep<CR>
 nnoremap <leader>? <cmd>Telescope grep_string<CR>
 nnoremap <leader>i <cmd>Telescope treesitter<CR>
 nnoremap <leader>x <cmd>Telescope commands<CR>
+nnoremap <leader>S <cmd>Telescope current_buffer_fuzzy_find<CR>
 
 " fugitive
 nnoremap <leader>gg <cmd>G<CR>
@@ -160,6 +161,20 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained",
   highlight = {
     enable = true,
+    disable = { "rust" },
+  },
+  indent = {
+    enable = true,
+    disable = { "rust" },
+  },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
+    },
     disable = { "rust" },
   },
 }
@@ -219,12 +234,12 @@ EOF
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-nnoremap <leader>T :lua require'lsp_extensions'.inlay_hints()<CR>
 nmap <silent> E <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nmap <silent> W <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
-nmap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
-nmap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+nmap <silent> gd <cmd>Telescope lsp_definitions<CR>
+nmap <silent> gr <cmd>Telescope lsp_references<CR>
 nmap <silent> gR <cmd>lua vim.lsp.buf.rename()<CR>
-nmap <silent> ga <cmd>lua vim.lsp.buf.code_action()<CR>
+nmap <silent> ga <cmd>Telescope lsp_code_actions<CR>
 
+autocmd BufEnter,BufWinEnter,TabEnter *.rs :lua require'lsp_extensions'.inlay_hints{}
 autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 1000)
