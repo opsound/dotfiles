@@ -240,6 +240,7 @@ nmap <silent> gd <cmd>Telescope lsp_definitions<CR>
 nmap <silent> gr <cmd>Telescope lsp_references<CR>
 nmap <silent> gR <cmd>lua vim.lsp.buf.rename()<CR>
 nmap <silent> ga <cmd>Telescope lsp_code_actions<CR>
+nmap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
 
 autocmd BufEnter,BufWinEnter,TabEnter *.rs :lua require'lsp_extensions'.inlay_hints{}
 autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 1000)
