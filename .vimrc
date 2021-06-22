@@ -6,6 +6,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'Chiel92/vim-autoformat'
 Plug 'aymericbeaumet/vim-symlink'
 Plug 'cespare/vim-toml'
 Plug 'christoomey/vim-tmux-navigator'            
@@ -35,7 +36,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vhdirk/vim-cmake'
 Plug 'wellle/targets.vim'
