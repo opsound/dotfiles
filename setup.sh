@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # .vimrc
 if [ -f ~/.vimrc ]; then
   mv ~/.vimrc{,.bak}
@@ -13,5 +15,7 @@ ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
 # neovim
 if [ -d ~/.config/nvim ]; then
   mv ~/.config/nvim{,.bak}
+else
+  mkdir -p ~/.config
 fi
 ln -s ~/dotfiles/.config/nvim ~/.config/nvim

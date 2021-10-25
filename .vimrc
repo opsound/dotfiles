@@ -16,9 +16,10 @@ Plug 'glts/vim-magnum'
 Plug 'glts/vim-radical'
 Plug 'hoob3rt/lualine.nvim'
 Plug 'hrsh7th/nvim-compe'
+Plug 'ibhagwan/fzf-lua'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-dirvish'
+Plug 'kyazdani42/nvim-web-devicons'
 Plug 'moll/vim-bbye' 
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/lsp-status.nvim'
@@ -38,6 +39,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vhdirk/vim-cmake'
+Plug 'vijaymarupudi/nvim-fzf'
 Plug 'wellle/targets.vim'
 Plug 'windwp/nvim-autopairs'
 Plug 'ziglang/zig.vim'
@@ -128,15 +130,14 @@ nnoremap <leader>M :Man <C-R><C-W><CR>
 nnoremap <leader>d :Dirvish %<CR>
 
 " Telescope
-nnoremap <leader>f <cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_ivy({}))<CR>
-nnoremap <leader>F <cmd>lua require'telescope.builtin'.file_browser(require('telescope.themes').get_ivy({}))<CR>
-nnoremap <leader>l <cmd>lua require'telescope.builtin'.buffers(require('telescope.themes').get_ivy({}))<CR>
-nnoremap <leader>L <cmd>lua require'telescope.builtin'.oldfiles(require('telescope.themes').get_ivy({}))<CR>
-nnoremap <leader>/ <cmd>lua require'telescope.builtin'.live_grep(require('telescope.themes').get_ivy({}))<CR>
-nnoremap <leader>? <cmd>lua require'telescope.builtin'.grep_string(require('telescope.themes').get_ivy({}))<CR>
-nnoremap <leader>i <cmd>lua require'telescope.builtin'.treesitter(require('telescope.themes').get_ivy({}))<CR>
-nnoremap <leader>x <cmd>lua require'telescope.builtin'.commands(require('telescope.themes').get_ivy({}))<CR>
-nnoremap <leader>S <cmd>lua require'telescope.builtin'.current_buffer_fuzzy_find(require('telescope.themes').get_ivy({}))<CR>
+nnoremap <leader>f :FzfLua files<CR>
+nnoremap <leader>F :FzfLua builtin<CR>
+nnoremap <leader>l :FzfLua buffers<CR>
+nnoremap <leader>L :FzfLua oldfiles<CR>
+nnoremap <leader>/ :FzfLua live_grep_native<CR>
+nnoremap <leader>? :FzfLua live_grep_native <C-r><C-w><CR>
+nnoremap <leader>x :FzfLua commands<CR>
+nnoremap <leader>S :FzfLua blines<CR>
 
 " fugitive
 nnoremap <leader>gg <cmd>G<CR>
@@ -161,7 +162,6 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained",
   highlight = {
     enable = true,
-    disable = { "rust" },
   },
   indent = {
     enable = true,
@@ -185,6 +185,16 @@ lsp_status.register_progress()
 require'lspconfig'.rust_analyzer.setup {
   on_attach = lsp_status.on_attach,
   capabilities = lsp_status.capabilities,
+  settings = {
+    ["rust-analyzer"] = {
+      -- diagnostics = {
+      --   disabled = { "unresolved-proc-macro" },
+      -- },
+      -- procMacro = {
+      --     enable = false
+      -- },
+    }
+  }
 }
 
 local function lspstatus ()
@@ -244,3 +254,5 @@ nmap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
 
 autocmd BufEnter,BufWinEnter,TabEnter *.rs :lua require'lsp_extensions'.inlay_hints{}
 autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 1000)
+
+let g:rustfmt_autosave = 1
