@@ -135,7 +135,7 @@ nnoremap <leader>F :FzfLua builtin<CR>
 nnoremap <leader>l :FzfLua buffers<CR>
 nnoremap <leader>L :FzfLua oldfiles<CR>
 nnoremap <leader>/ :FzfLua live_grep_native<CR>
-nnoremap <leader>? :FzfLua live_grep_native <C-r><C-w><CR>
+nnoremap <leader>? :FzfLua grep_cword<CR>
 nnoremap <leader>x :FzfLua commands<CR>
 nnoremap <leader>S :FzfLua blines<CR>
 
