@@ -153,6 +153,8 @@ map("n", "<leader>xd", ":Trouble document_diagnostics<CR>")
 map("n", "<leader>xl", ":Trouble loclist<CR>")
 map("n", "<leader>xq", ":Trouble quickfix<CR>")
 map("n", "gR", ":Trouble lsp_references<CR>")
+map("n", "<C-n>", ":lua require('trouble').next({skip_groups = true, jump = true})<CR>")
+map("n", "<C-p>", ":lua require('trouble').previous({skip_groups = true, jump = true})<CR>")
 
 require("Comment").setup()
 require("nvim-autopairs").setup()
@@ -191,7 +193,10 @@ lsp_config.rust_analyzer.setup({
         loadOutDirsFromCheck = true,
       },
       procMacro = {
-        enable = false,
+        enable = true,
+      },
+      inlayHints = {
+        enable = true,
       },
     },
   },
