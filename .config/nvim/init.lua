@@ -21,6 +21,7 @@ require("packer").startup(function(use)
   use({ "editorconfig/editorconfig-vim" })
   use({ "folke/lua-dev.nvim" })
   use({ "folke/tokyonight.nvim" })
+  use({ "folke/trouble.nvim" })
   use({ "glts/vim-magnum" })
   use({ "glts/vim-radical" })
   use({ "hoob3rt/lualine.nvim" })
@@ -137,7 +138,6 @@ map("n", "<leader>l", ":FzfLua buffers<CR>")
 map("n", "<leader>L", ":FzfLua oldfiles<CR>")
 map("n", "<leader>/", ":FzfLua live_grep_native<CR>")
 map("n", "<leader>?", ":FzfLua grep_cword<CR>")
-map("n", "<leader>x", ":FzfLua commands<CR>")
 map("n", "<leader>S", ":FzfLua blines<CR>")
 
 map("n", "<leader>F", ":lua require('stylua-nvim').format_file()<CR>")
@@ -146,13 +146,19 @@ map("n", "<leader>F", ":lua require('stylua-nvim').format_file()<CR>")
 map("n", "E", ":lua vim.diagnostic.goto_prev()<CR>")
 map("n", "W", ":lua vim.diagnostic.goto_next()<CR>")
 map("n", "gd", ":Telescope lsp_definitions<CR>")
-map("n", "gr", ":Telescope lsp_references<CR>")
-map("n", "gR", ":lua vim.lsp.buf.rename()<CR>")
+map("n", "gr", ":lua vim.lsp.buf.rename()<CR>")
 map("n", "ga", ":Telescope lsp_code_actions<CR>")
 map("n", "K", ":lua vim.lsp.buf.hover()<CR>")
+map("n", "<leader>xx", ":Trouble<cr>")
+map("n", "<leader>xw", ":Trouble workspace_diagnostics<CR>")
+map("n", "<leader>xd", ":Trouble document_diagnostics<CR>")
+map("n", "<leader>xl", ":Trouble loclist<CR>")
+map("n", "<leader>xq", ":Trouble quickfix<CR>")
+map("n", "gR", ":Trouble lsp_references<CR>")
 
 require("Comment").setup()
 require("nvim-autopairs").setup()
+require("trouble").setup()
 
 require("nvim-treesitter.configs").setup({
   ensure_installed = "maintained",
@@ -179,10 +185,7 @@ local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protoco
 lsp_status.register_progress()
 
 lsp_config.rust_analyzer.setup({
-  on_attach = function()
-    lsp_status.on_attach()
-    vim.api.nvim_command([[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]])
-  end,
+  on_attach = lsp_status.on_attach,
   capabilities = capabilities,
   settings = {
     ["rust-analyzer"] = {
