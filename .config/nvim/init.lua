@@ -137,8 +137,8 @@ map('n', '<leader>x', ':FzfLua commands<CR>')
 map('n', '<leader>S', ':FzfLua blines<CR>')
 
 -- lsp keybindings
-map('n', 'E', ':lua vim.lsp.diagnostic.goto_prev()<CR>')
-map('n', 'W', ':lua vim.lsp.diagnostic.goto_next()<CR>')
+map('n', 'E', ':lua vim.diagnostic.goto_prev()<CR>')
+map('n', 'W', ':lua vim.diagnostic.goto_next()<CR>')
 map('n', 'gd', ':Telescope lsp_definitions<CR>')
 map('n', 'gr', ':Telescope lsp_references<CR>')
 map('n', 'gR', ':lua vim.lsp.buf.rename()<CR>')
