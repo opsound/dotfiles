@@ -133,14 +133,12 @@ map("n", "<leader>d", ":Dirvish %<CR>")
 
 -- fzf
 map("n", "<leader>f", ":FzfLua files<CR>")
--- map("n", "<leader>F", ":FzfLua builtin<CR>")
+map("n", "<leader>F", ":FzfLua builtin<CR>")
 map("n", "<leader>l", ":FzfLua buffers<CR>")
 map("n", "<leader>L", ":FzfLua oldfiles<CR>")
 map("n", "<leader>/", ":FzfLua live_grep_native<CR>")
 map("n", "<leader>?", ":FzfLua grep_cword<CR>")
 map("n", "<leader>S", ":FzfLua blines<CR>")
-
-map("n", "<leader>F", ":lua require('stylua-nvim').format_file()<CR>")
 
 -- lsp keybindings
 map("n", "E", ":lua vim.diagnostic.goto_prev()<CR>")
