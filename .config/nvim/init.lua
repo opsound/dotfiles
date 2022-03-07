@@ -19,6 +19,7 @@ require("packer").startup(function(use)
   use({ "cespare/vim-toml" })
   use({ "ckipp01/stylua-nvim" })
   use({ "editorconfig/editorconfig-vim" })
+  use({ "folke/lua-dev.nvim" })
   use({ "folke/tokyonight.nvim" })
   use({ "glts/vim-magnum" })
   use({ "glts/vim-radical" })
@@ -195,35 +196,8 @@ lsp_config.rust_analyzer.setup({
   },
 })
 
-local runtime_path = vim.split(package.path, ";")
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
-vim.lsp.buf.formatting_sync()
-
-lsp_config.sumneko_lua.setup({
-  settings = {
-    Lua = {
-      runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        version = "LuaJIT",
-        -- Setup your lua path
-        path = runtime_path,
-      },
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = { "vim" },
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
-      },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false,
-      },
-    },
-  },
-})
+local luadev = require("lua-dev").setup()
+lsp_config.sumneko_lua.setup(luadev)
 
 local function lspstatus()
   if #vim.lsp.buf_get_clients() > 0 then
@@ -238,26 +212,26 @@ require("lualine").setup({
   sections = { lualine_c = { "filename", lspstatus } },
 })
 
-local cmp = require("cmp")
+local nvim_cmp = require("cmp")
 
-cmp.setup({
+nvim_cmp.setup({
   snippet = {
     expand = function(args)
       vim.fn["vsnip#anonymous"](args.body)
     end,
   },
   mapping = {
-    ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
-    ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
-    ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-    ["<C-y>"] = cmp.config.disable,
-    ["<C-e>"] = cmp.mapping({
-      i = cmp.mapping.abort(),
-      c = cmp.mapping.close(),
+    ["<C-b>"] = nvim_cmp.mapping(nvim_cmp.mapping.scroll_docs(-4), { "i", "c" }),
+    ["<C-f>"] = nvim_cmp.mapping(nvim_cmp.mapping.scroll_docs(4), { "i", "c" }),
+    ["<C-Space>"] = nvim_cmp.mapping(nvim_cmp.mapping.complete(), { "i", "c" }),
+    ["<C-y>"] = nvim_cmp.config.disable,
+    ["<C-e>"] = nvim_cmp.mapping({
+      i = nvim_cmp.mapping.abort(),
+      c = nvim_cmp.mapping.close(),
     }),
-    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+    ["<CR>"] = nvim_cmp.mapping.confirm({ select = true }),
   },
-  sources = cmp.config.sources({
+  sources = nvim_cmp.config.sources({
     { name = "nvim_lsp" },
     { name = "vsnip" },
   }, {
