@@ -245,9 +245,9 @@ nvim_cmp.setup({
   }),
 })
 
-vim.api.nvim_command("autocmd BufEnter,BufWinEnter,TabEnter *.rs :lua require'lsp_extensions'.inlay_hints{}")
 vim.api.nvim_command("autocmd BufWritePre *.{c,cpp,h} :ClangFormat")
 vim.api.nvim_command("autocmd BufWritePre *.lua :lua require('stylua-nvim').format_file()")
+vim.api.nvim_command("autocmd BufWritePre *.rs :lua vim.lsp.buf.formatting_sync()")
 
 vim.cmd([[
   augroup packer_user_config
