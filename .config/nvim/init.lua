@@ -47,6 +47,7 @@ require("packer").startup(function(use)
   use({ "ojroques/vim-oscyank" })
   use({ "psf/black" })
   use({ "rhysd/vim-clang-format" })
+  use({ "stevearc/aerial.nvim" })
   use({ "tommcdo/vim-exchange" })
   use({ "tpope/vim-dispatch" })
   use({ "tpope/vim-repeat" })
@@ -131,6 +132,10 @@ map("n", "<leader>M", ":Man <C-R><C-W><CR>")
 -- Dirvish
 map("n", "<leader>d", ":Dirvish %<CR>")
 
+-- aerial
+map("n", "<leader>i", ":Telescope aerial<CR>")
+map("n", "<leader>I", ":AerialToggle<CR>")
+
 -- fzf
 map("n", "<leader>f", ":FzfLua files<CR>")
 map("n", "<leader>F", ":FzfLua builtin<CR>")
@@ -159,6 +164,8 @@ map("n", "<C-p>", ":lua require('trouble').previous({skip_groups = true, jump = 
 require("Comment").setup()
 require("nvim-autopairs").setup()
 require("trouble").setup()
+require("aerial").setup()
+require("telescope").load_extension("aerial")
 
 require("nvim-treesitter.configs").setup({
   ensure_installed = "maintained",
