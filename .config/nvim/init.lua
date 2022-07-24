@@ -168,7 +168,6 @@ require("aerial").setup()
 require("telescope").load_extension("aerial")
 
 require("nvim-treesitter.configs").setup({
-  ensure_installed = "maintained",
   highlight = {
     enable = true,
   },
