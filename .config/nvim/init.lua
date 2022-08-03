@@ -1,68 +1,66 @@
 local function map(mode, lhs, rhs, opts)
-  local options = { noremap = true }
-  if opts then
-    options = vim.tbl_extend("force", options, opts)
-  end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+	local options = { noremap = true }
+	if opts then
+		options = vim.tbl_extend("force", options, opts)
+	end
+	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
 local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  vim.fn.execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
+	vim.fn.execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
 end
 
 require("packer").startup(function(use)
-  use({ "Chiel92/vim-autoformat" })
-  use({ "alexghergh/nvim-tmux-navigation" })
-  use({ "aymericbeaumet/vim-symlink" })
-  use({ "cespare/vim-toml" })
-  use({ "ckipp01/stylua-nvim" })
-  use({ "editorconfig/editorconfig-vim" })
-  use({ "folke/lua-dev.nvim" })
-  use({ "folke/tokyonight.nvim" })
-  use({ "folke/trouble.nvim" })
-  use({ "glts/vim-magnum" })
-  use({ "glts/vim-radical" })
-  use({ "hoob3rt/lualine.nvim" })
-  use({ "hrsh7th/cmp-buffer" })
-  use({ "hrsh7th/cmp-cmdline" })
-  use({ "hrsh7th/cmp-nvim-lsp" })
-  use({ "hrsh7th/cmp-path" })
-  use({ "hrsh7th/cmp-vsnip" })
-  use({ "hrsh7th/nvim-cmp" })
-  use({ "hrsh7th/vim-vsnip" })
-  use({ "ibhagwan/fzf-lua" })
-  use({ "justinmk/vim-dirvish" })
-  use({ "kyazdani42/nvim-web-devicons" })
-  use({ "moll/vim-bbye" })
-  use({ "neovim/nvim-lspconfig" })
-  use({ "numToStr/Comment.nvim" })
-  use({ "nvim-lua/lsp-status.nvim" })
-  use({ "nvim-lua/lsp_extensions.nvim" })
-  use({ "nvim-lua/plenary.nvim" })
-  use({ "nvim-lua/popup.nvim" })
-  use({ "nvim-telescope/telescope.nvim" })
-  use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-  use({ "ojroques/vim-oscyank" })
-  use({ "psf/black" })
-  use({ "rhysd/vim-clang-format" })
-  use({ "stevearc/aerial.nvim" })
-  use({ "tommcdo/vim-exchange" })
-  use({ "tpope/vim-dispatch" })
-  use({ "tpope/vim-repeat" })
-  use({ "tpope/vim-surround" })
-  use({ "vhdirk/vim-cmake" })
-  use({ "vijaymarupudi/nvim-fzf" })
-  use({ "wbthomason/packer.nvim" })
-  use({ "wellle/targets.vim" })
-  use({ "windwp/nvim-autopairs" })
-  use({ "ziglang/zig.vim" })
+	use({ "alexghergh/nvim-tmux-navigation" })
+	use({ "aymericbeaumet/vim-symlink" })
+	use({ "cespare/vim-toml" })
+	use({ "ckipp01/stylua-nvim" })
+	use({ "editorconfig/editorconfig-vim" })
+	use({ "folke/lua-dev.nvim" })
+	use({ "folke/tokyonight.nvim" })
+	use({ "folke/trouble.nvim" })
+	use({ "glts/vim-magnum" })
+	use({ "glts/vim-radical" })
+	use({ "hoob3rt/lualine.nvim" })
+	use({ "hrsh7th/cmp-buffer" })
+	use({ "hrsh7th/cmp-cmdline" })
+	use({ "hrsh7th/cmp-nvim-lsp" })
+	use({ "hrsh7th/cmp-path" })
+	use({ "hrsh7th/cmp-vsnip" })
+	use({ "hrsh7th/nvim-cmp" })
+	use({ "hrsh7th/vim-vsnip" })
+	use({ "ibhagwan/fzf-lua" })
+	use({ "justinmk/vim-dirvish" })
+	use({ "kyazdani42/nvim-web-devicons" })
+	use({ "moll/vim-bbye" })
+	use({ "neovim/nvim-lspconfig" })
+	use({ "numToStr/Comment.nvim" })
+	use({ "nvim-lua/lsp-status.nvim" })
+	use({ "nvim-lua/lsp_extensions.nvim" })
+	use({ "nvim-lua/plenary.nvim" })
+	use({ "nvim-lua/popup.nvim" })
+	use({ "nvim-telescope/telescope.nvim" })
+	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+	use({ "ojroques/vim-oscyank" })
+	use({ "rhysd/vim-clang-format" })
+	use({ "stevearc/aerial.nvim" })
+	use({ "tommcdo/vim-exchange" })
+	use({ "tpope/vim-dispatch" })
+	use({ "tpope/vim-repeat" })
+	use({ "tpope/vim-surround" })
+	use({ "vhdirk/vim-cmake" })
+	use({ "vijaymarupudi/nvim-fzf" })
+	use({ "wbthomason/packer.nvim" })
+	use({ "wellle/targets.vim" })
+	use({ "windwp/nvim-autopairs" })
+	use({ "ziglang/zig.vim" })
 end)
 
 if string.find(vim.fn.system("hostname"), "facebook") then
-  vim.cmd([[set rtp+=/usr/local/share/myc/vim]])
-  map("n", "<leader>j", ":MYC<CR>")
+	vim.cmd([[set rtp+=/usr/local/share/myc/vim]])
+	map("n", "<leader>j", ":MYC<CR>")
 end
 
 vim.opt.completeopt = { "menuone", "noinsert", "noselect" }
@@ -150,7 +148,7 @@ map("n", "E", ":lua vim.diagnostic.goto_prev()<CR>")
 map("n", "W", ":lua vim.diagnostic.goto_next()<CR>")
 map("n", "gd", ":Telescope lsp_definitions<CR>")
 map("n", "gr", ":lua vim.lsp.buf.rename()<CR>")
-map("n", "ga", ":Telescope lsp_code_actions<CR>")
+map("n", "ga", ":lua vim.lsp.buf.code_action()<CR>")
 map("n", "K", ":lua vim.lsp.buf.hover()<CR>")
 map("n", "<leader>xx", ":Trouble<cr>")
 map("n", "<leader>xw", ":Trouble workspace_diagnostics<CR>")
@@ -168,21 +166,21 @@ require("aerial").setup()
 require("telescope").load_extension("aerial")
 
 require("nvim-treesitter.configs").setup({
-  highlight = {
-    enable = true,
-  },
-  indent = {
-    enable = true,
-  },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "gnn",
-      node_incremental = "grn",
-      scope_incremental = "grc",
-      node_decremental = "grm",
-    },
-  },
+	highlight = {
+		enable = true,
+	},
+	indent = {
+		enable = true,
+	},
+	incremental_selection = {
+		enable = true,
+		keymaps = {
+			init_selection = "gnn",
+			node_incremental = "grn",
+			scope_incremental = "grc",
+			node_decremental = "grm",
+		},
+	},
 })
 
 local lsp_status = require("lsp-status")
@@ -191,64 +189,64 @@ local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protoco
 lsp_status.register_progress()
 
 lsp_config.rust_analyzer.setup({
-  on_attach = lsp_status.on_attach,
-  capabilities = capabilities,
-  settings = {
-    ["rust-analyzer"] = {
-      cargo = {
-        loadOutDirsFromCheck = true,
-      },
-      procMacro = {
-        enable = true,
-      },
-      inlayHints = {
-        enable = true,
-      },
-    },
-  },
+	on_attach = lsp_status.on_attach,
+	capabilities = capabilities,
+	settings = {
+		["rust-analyzer"] = {
+			cargo = {
+				loadOutDirsFromCheck = true,
+			},
+			procMacro = {
+				enable = true,
+			},
+			inlayHints = {
+				enable = true,
+			},
+		},
+	},
 })
 
 local luadev = require("lua-dev").setup()
 lsp_config.sumneko_lua.setup(luadev)
 
 local function lspstatus()
-  if #vim.lsp.buf_get_clients() > 0 then
-    return lsp_status.status()
-  else
-    return ""
-  end
+	if #vim.lsp.buf_get_clients() > 0 then
+		return lsp_status.status()
+	else
+		return ""
+	end
 end
 
 require("lualine").setup({
-  options = { theme = "tokyonight" },
-  sections = { lualine_c = { "filename", lspstatus } },
+	options = { theme = "tokyonight" },
+	sections = { lualine_c = { "filename", lspstatus } },
 })
 
 local nvim_cmp = require("cmp")
 
 nvim_cmp.setup({
-  snippet = {
-    expand = function(args)
-      vim.fn["vsnip#anonymous"](args.body)
-    end,
-  },
-  mapping = {
-    ["<C-b>"] = nvim_cmp.mapping(nvim_cmp.mapping.scroll_docs(-4), { "i", "c" }),
-    ["<C-f>"] = nvim_cmp.mapping(nvim_cmp.mapping.scroll_docs(4), { "i", "c" }),
-    ["<C-Space>"] = nvim_cmp.mapping(nvim_cmp.mapping.complete(), { "i", "c" }),
-    ["<C-y>"] = nvim_cmp.config.disable,
-    ["<C-e>"] = nvim_cmp.mapping({
-      i = nvim_cmp.mapping.abort(),
-      c = nvim_cmp.mapping.close(),
-    }),
-    ["<CR>"] = nvim_cmp.mapping.confirm({ select = true }),
-  },
-  sources = nvim_cmp.config.sources({
-    { name = "nvim_lsp" },
-    { name = "vsnip" },
-  }, {
-    { name = "buffer" },
-  }),
+	snippet = {
+		expand = function(args)
+			vim.fn["vsnip#anonymous"](args.body)
+		end,
+	},
+	mapping = {
+		["<C-b>"] = nvim_cmp.mapping(nvim_cmp.mapping.scroll_docs(-4), { "i", "c" }),
+		["<C-f>"] = nvim_cmp.mapping(nvim_cmp.mapping.scroll_docs(4), { "i", "c" }),
+		["<C-Space>"] = nvim_cmp.mapping(nvim_cmp.mapping.complete(), { "i", "c" }),
+		["<C-y>"] = nvim_cmp.config.disable,
+		["<C-e>"] = nvim_cmp.mapping({
+			i = nvim_cmp.mapping.abort(),
+			c = nvim_cmp.mapping.close(),
+		}),
+		["<CR>"] = nvim_cmp.mapping.confirm({ select = true }),
+	},
+	sources = nvim_cmp.config.sources({
+		{ name = "nvim_lsp" },
+		{ name = "vsnip" },
+	}, {
+		{ name = "buffer" },
+	}),
 })
 
 vim.api.nvim_command("autocmd BufWritePre *.{c,cpp,h} :ClangFormat")
