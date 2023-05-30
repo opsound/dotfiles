@@ -6,11 +6,18 @@ local function map(mode, lhs, rhs, opts)
 	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-	vim.fn.execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
+local ensure_packer = function()
+	local fn = vim.fn
+	local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+	if fn.empty(fn.glob(install_path)) > 0 then
+		fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
+		vim.cmd([[packadd packer.nvim]])
+		return true
+	end
+	return false
 end
+
+local packer_bootstrap = ensure_packer()
 
 require("packer").startup(function(use)
 	use({ "alexghergh/nvim-tmux-navigation" })
@@ -18,7 +25,7 @@ require("packer").startup(function(use)
 	use({ "cespare/vim-toml" })
 	use({ "ckipp01/stylua-nvim" })
 	use({ "editorconfig/editorconfig-vim" })
-	use({ "folke/lua-dev.nvim" })
+	use({ "folke/neodev.nvim" })
 	use({ "folke/tokyonight.nvim" })
 	use({ "folke/trouble.nvim" })
 	use({ "glts/vim-magnum" })
@@ -42,7 +49,7 @@ require("packer").startup(function(use)
 	use({ "nvim-lua/plenary.nvim" })
 	use({ "nvim-lua/popup.nvim" })
 	use({ "nvim-telescope/telescope.nvim" })
-	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+	use({ "nvim-treesitter/nvim-treesitter" })
 	use({ "ojroques/vim-oscyank" })
 	use({ "rhysd/vim-clang-format" })
 	use({ "stevearc/aerial.nvim" })
@@ -56,6 +63,10 @@ require("packer").startup(function(use)
 	use({ "wellle/targets.vim" })
 	use({ "windwp/nvim-autopairs" })
 	use({ "ziglang/zig.vim" })
+
+	if packer_bootstrap then
+		require("packer").sync()
+	end
 end)
 
 if string.find(vim.fn.system("hostname"), "facebook") then
@@ -185,8 +196,10 @@ require("nvim-treesitter.configs").setup({
 
 local lsp_status = require("lsp-status")
 local lsp_config = require("lspconfig")
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 lsp_status.register_progress()
+
+lsp_config.pyright.setup({})
 
 lsp_config.rust_analyzer.setup({
 	on_attach = lsp_status.on_attach,
@@ -206,8 +219,8 @@ lsp_config.rust_analyzer.setup({
 	},
 })
 
-local luadev = require("lua-dev").setup()
-lsp_config.sumneko_lua.setup(luadev)
+require("neodev").setup({})
+lsp_config.lua_ls.setup({})
 
 local function lspstatus()
 	if #vim.lsp.buf_get_clients() > 0 then
@@ -251,7 +264,7 @@ nvim_cmp.setup({
 
 vim.api.nvim_command("autocmd BufWritePre *.{c,cpp,h} :ClangFormat")
 vim.api.nvim_command("autocmd BufWritePre *.lua :lua require('stylua-nvim').format_file()")
-vim.api.nvim_command("autocmd BufWritePre *.rs :lua vim.lsp.buf.formatting_sync()")
+vim.api.nvim_command("autocmd BufWritePre *.rs :lua vim.lsp.buf.format()")
 
 vim.cmd([[
   augroup packer_user_config
